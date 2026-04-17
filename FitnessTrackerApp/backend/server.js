@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
-const serverless = require('serverless-http');
 
 const pool = require('./database/db');
 const app = express();
@@ -259,13 +258,7 @@ app.get('/api/recommendations', authenticateToken, async (req, res) => {
   }
 });
 
-// Since we are deploying to Netlify, we serve no static assets dynamically
-// Export wrapped app instead of app.listen (also added a listener for Render instances)
 const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== 'test') {
-  app.listen(PORT, () => {
-    console.log(`Server listening natively on port ${PORT}`);
-  });
-}
-
-module.exports.handler = serverless(app);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
