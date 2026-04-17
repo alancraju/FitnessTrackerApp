@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config();
 
 const pool = require('./database/db');
 const app = express();
