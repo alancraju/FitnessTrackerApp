@@ -258,6 +258,15 @@ app.get('/api/recommendations', authenticateToken, async (req, res) => {
   }
 });
 
+// --- SINGLE APP UNIFIED FRONTEND ---
+// Serve the built React App directly out of Node.js
+const frontendPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendPath));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

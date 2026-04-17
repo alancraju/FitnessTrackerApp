@@ -1,5 +1,5 @@
 const BASE_URL = import.meta.env.PROD 
-  ? 'https://fitness-backend-uwur.onrender.com/api' 
+  ? '/api' 
   : 'http://localhost:5000/api';
 
 export const apiCall = async (endpoint, options = {}) => {
