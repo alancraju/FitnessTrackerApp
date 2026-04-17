@@ -15,7 +15,7 @@ app.use(express.json());
 const JWT_SECRET = process.env.JWT_SECRET || 'secret_key_123';
 
 // Load food dataset
-const datasetPath = path.resolve(__dirname, 'data', 'indian_foods.json');
+const datasetPath = path.resolve(__dirname, 'dataset', 'indian_foods.json');
 let foodsDataset = [];
 try {
   const data = fs.readFileSync(datasetPath, 'utf-8');
