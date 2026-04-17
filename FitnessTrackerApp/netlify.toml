@@ -1,0 +1,21 @@
+[build]
+  # Build the frontend and install backend dependencies so functions can be bundled correctly
+  command = "cd frontend && npm run build"
+  publish = "frontend/dist"
+  functions = "backend"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Map frontend /api requests strictly to the Netlify Serverless Function
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/server/api/:splat"
+  status = 200
+  force = true
+
+# React Router catch-all for SPA handling
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
